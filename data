@@ -1,0 +1,42 @@
+!pip install -q streamlit pandas
+
+# Create the data folder
+!mkdir -p data
+
+# Generate the mock JSON data
+import json
+data = [
+  {
+    "athlete_id": "ATH-001",
+    "name": "Rahul Sharma",
+    "sport": "Basketball",
+    "weekly_load_minutes": 420,
+    "sleep_avg_hours": 6.2,
+    "injury_risk_score": 0.88,
+    "risk_status": "High Risk - Overtraining",
+    "coach_note": "Requires immediate load management."
+  },
+  {
+    "athlete_id": "ATH-002",
+    "name": "Priya Patel",
+    "sport": "Dance",
+    "weekly_load_minutes": 280,
+    "sleep_avg_hours": 7.8,
+    "injury_risk_score": 0.21,
+    "risk_status": "Optimal",
+    "coach_note": "Ready for competition intensity."
+  },
+  {
+    "athlete_id": "ATH-003",
+    "name": "Vikram Singh",
+    "sport": "Basketball",
+    "weekly_load_minutes": 350,
+    "sleep_avg_hours": 5.5,
+    "injury_risk_score": 0.74,
+    "risk_status": "Moderate Risk",
+    "coach_note": "Monitor knee stress; reduce jump reps."
+  }
+]
+with open('data/mock_athlete_data.json', 'w') as f:
+    json.dump(data, f)
+print("Data created successfully!")
