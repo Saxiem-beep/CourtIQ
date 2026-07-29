@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import json
 
 # --- Page Config ---
 st.set_page_config(page_title="CourtIQ Dashboard", page_icon="🏀", layout="wide")
@@ -8,11 +7,42 @@ st.set_page_config(page_title="CourtIQ Dashboard", page_icon="🏀", layout="wid
 st.title("CourtIQ 🧠")
 st.subheader("AI Performance Coaching & Risk Management")
 
-# --- Load Data ---
+# --- Embedded Data (Self-Contained Fix) ---
 @st.cache_data
 def load_data():
-    with open("data/mock_athlete_data.json", "r") as file:
-        data = json.load(file)
+    data = [
+      {
+        "athlete_id": "ATH-001",
+        "name": "Rahul Sharma",
+        "sport": "Basketball",
+        "weekly_load_minutes": 420,
+        "sleep_avg_hours": 6.2,
+        "injury_risk_score": 0.88,
+        "risk_status": "High Risk - Overtraining",
+        "coach_note": "Requires immediate load management."
+      },
+      {
+        "athlete_id": "ATH-002",
+        "name": "Priya Patel",
+        "sport": "Dance",
+        "weekly_load_minutes": 280,
+        "sleep_avg_hours": 7.8,
+        "injury_risk_score": 0.21,
+        "risk_status": "Optimal",
+        "coach_note": "Ready for competition intensity."
+      },
+      {
+        "athlete_id": "ATH-003",
+        "name": "Vikram Singh",
+        "sport": "Basketball",
+        "weekly_load_minutes": 350,
+        "sleep_avg_hours": 5.5,
+        "injury_risk_score": 0.74,
+        "risk_status": "Moderate Risk",
+        "coach_note": "Monitor knee stress; reduce jump reps."
+      }
+    ]
+    # Convert to DataFrame and sort by risk
     df = pd.DataFrame(data).sort_values(by="injury_risk_score", ascending=False)
     return df
 
